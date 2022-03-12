@@ -9,7 +9,7 @@
 }
 .maindiv
 {
-    height:736px;
+    height:100%;
     width:50%; 
     max-width: 500px;
     background-image: url('./Component/weather222.jpeg');
@@ -20,7 +20,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border-radius: 20px;
 }
 
 .maindiv input
@@ -157,10 +156,10 @@ h1
     font-weight:bold;
 }
 
-@media (max-width: 568px)
+/* @media (max-width: 568px)
 {
     .maindiv
     {
         width: 100%;
     }
-}
+} */
