@@ -78,12 +78,14 @@ const Weather = () => {
                     <span className="info6" >{Math.floor(weatherData.main.pressure)}<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="https://img.icons8.com/external-icongeek26-outline-gradient-icongeek26/50/000000/external-barometer-physics-icongeek26-outline-gradient-icongeek26.png"/></span></span>
                     <span className="info6" >{weatherData.weather[0].description.toUpperCase()}<span>&nbsp;&nbsp;&nbsp;<img src="https://img.icons8.com/nolan/60/partly-cloudy-day.png"/></span></span>
                 </div>
-
+                <span className="name">© 2022 Mustapha.IB</span>
                 </motion.div>
             </>
             :
             null
+            
         }
+        
         </div>
         </div>
     )
