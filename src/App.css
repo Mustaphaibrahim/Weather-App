@@ -47,10 +47,9 @@
     width: 90%;
     height: 100%;
     background-color: rgba(255, 255, 255, 0.195);
-    margin: 10px 0;
+    margin: 20px 0;
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
     border-radius: 40px;
     backdrop-filter: blur(3px);
     box-shadow:white 0px 0px 40px;
