@@ -58,7 +58,7 @@ const Weather = () => {
         <div className="maindiv" style={{backgroundImage:`url(${RandomPics})`}}>
             <input type="text" placeholder="Enter Your City Name..." value={location}
             onKeyPress={(e)=>{
-                if(e.code === 'Enter' || 'Return' )
+                if(e.code === 'Enter' )
                 {
                     apiSearch();
                 }
