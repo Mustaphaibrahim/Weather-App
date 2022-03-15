@@ -1,11 +1,18 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { motion } from "framer-motion"
+import images  from './Pics'
+
+    const imgNum = images[Math.floor(Math.random() * images.length)]
+    const RandomPics = `${imgNum}`
+
+    let  lat;
+    let  lon;
 
 const Weather = () => {
 
     const [ weatherData, setWeatherData ] = useState ("");
-    const [ location, setLocation ] = useState ('Berlin');
+    const [ location, setLocation ] = useState ('');
     const [icon, setIcon ] = useState ('')
 
     const apiSearch = () => { 
@@ -21,17 +28,37 @@ const Weather = () => {
         })
     }
 
-    useEffect(() => {
-        apiSearch();
-    },[])
+    const api = {
+        key: "c33606fb194e61c82ababcb0fcc82128",
+        base : "https://api.openweathermap.org/data/2.5/",
+    }
 
+    useEffect(()=>{
+        const  showPosition =  (position)=> {
+                lat=  position.coords.latitude;
+                lon = position.coords.longitude;
+               console.log('--------------------------');
+               axios.get(`http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=5&appid=${api.key}`)
+               .then((data) => {
+                   axios.get(`${api.base}weather?q=${data.data[0].name}&units=metric&APPID=${api.key}`)
+                   .then((data) => {
+                    setWeatherData(data.data);
+                       setIcon(`http://openweathermap.org/img/wn/${data.data.weather[0].icon}@2x.png`)
+                       
+                   });
+               });
+           }
+        navigator.geolocation.getCurrentPosition(showPosition);
+       },[]);
 
+    // console.log(Navigator.location);
 
     return (
-        <div className="maindiv">
-            <input type="text" placeholder="City Name..." value={location}
+        
+        <div className="maindiv" style={{backgroundImage:`url(${RandomPics})`}}>
+            <input type="text" placeholder="Enter Your City Name..." value={location}
             onKeyPress={(e)=>{
-                if(e.code === 'Enter')
+                if(e.code === 'Enter' || 'Return' )
                 {
                     apiSearch();
                 }
@@ -40,7 +67,6 @@ const Weather = () => {
                 setLocation(e.target.value);
             }}
             ></input>
-            
             <div className="weather-info">
             {
                 weatherData !== ""?
@@ -71,7 +97,7 @@ const Weather = () => {
 
                 <div className="weather-wind">
                     <span className="info5" >{Math.floor(weatherData.wind.deg)}<span className="icon"></span>&nbsp;&nbsp;&nbsp;<img src="https://img.icons8.com/nolan/40/windsock.png"/></span>
-                    <span className="info5">{Math.floor(weatherData.wind.speed)}<span>&nbsp;&nbsp;</span><img src="https://img.icons8.com/nolan/40/wind.png"/></span>
+                    <span className="info5">{Math.floor(weatherData.wind.speed)}<span>&nbsp;<span className="speeed">km/h</span>&nbsp;&nbsp;</span><img src="https://img.icons8.com/nolan/40/wind.png"/></span>
                 </div>
 
                 <div className="weather-wind2">
@@ -88,6 +114,7 @@ const Weather = () => {
         
         </div>
         </div>
+        
     )
  }
 
