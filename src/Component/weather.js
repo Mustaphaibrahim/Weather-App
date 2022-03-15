@@ -23,7 +23,7 @@ const Weather = () => {
         }
         axios.get(`${api.base}weather?q=${location}&units=metric&APPID=${api.key}`).then((data)=>{
             setWeatherData(data.data)
-            setIcon(`http://openweathermap.org/img/wn/${data.data.weather[0].icon}@2x.png`)
+            setIcon(`https://openweathermap.org/img/wn/${data.data.weather[0].icon}@2x.png`)
             console.log(data);
         })
     }
@@ -38,12 +38,12 @@ const Weather = () => {
                 lat=  position.coords.latitude;
                 lon = position.coords.longitude;
                console.log('--------------------------');
-               axios.get(`http://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=5&appid=${api.key}`)
+               axios.get(`https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=5&appid=${api.key}`)
                .then((data) => {
                    axios.get(`${api.base}weather?q=${data.data[0].name}&units=metric&APPID=${api.key}`)
                    .then((data) => {
                     setWeatherData(data.data);
-                       setIcon(`http://openweathermap.org/img/wn/${data.data.weather[0].icon}@2x.png`)
+                       setIcon(`https://openweathermap.org/img/wn/${data.data.weather[0].icon}@2x.png`)
                        
                    });
                });
