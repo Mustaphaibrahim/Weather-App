@@ -1,10 +1,10 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
-import { motion } from "framer-motion"
-import images  from './Pics'
+import { motion } from "framer-motion";
+import images  from './Pics';
 
-    const imgNum = images[Math.floor(Math.random() * images.length)]
-    const RandomPics = `${imgNum}`
+    const imgNum = images[Math.floor(Math.random() * images.length)];
+    const RandomPics = `${imgNum}`;
 
     let  lat;
     let  lon;
@@ -13,7 +13,7 @@ const Weather = () => {
 
     const [ weatherData, setWeatherData ] = useState ("");
     const [ location, setLocation ] = useState ('');
-    const [icon, setIcon ] = useState ('')
+    const [icon, setIcon ] = useState ('');
 
     const apiSearch = () => { 
 
@@ -25,19 +25,18 @@ const Weather = () => {
             setWeatherData(data.data)
             setIcon(`https://openweathermap.org/img/wn/${data.data.weather[0].icon}@2x.png`)
             console.log(data);
-        })
-    }
+        });
+    };
 
     const api = {
         key: "c33606fb194e61c82ababcb0fcc82128",
         base : "https://api.openweathermap.org/data/2.5/",
-    }
+    };
 
     useEffect(()=>{
         const  showPosition =  (position)=> {
                 lat=  position.coords.latitude;
                 lon = position.coords.longitude;
-               console.log('--------------------------');
                axios.get(`https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&limit=5&appid=${api.key}`)
                .then((data) => {
                    axios.get(`${api.base}weather?q=${data.data[0].name}&units=metric&APPID=${api.key}`)
@@ -50,8 +49,6 @@ const Weather = () => {
            }
         navigator.geolocation.getCurrentPosition(showPosition);
        },[]);
-
-    // console.log(Navigator.location);
 
     return (
         
