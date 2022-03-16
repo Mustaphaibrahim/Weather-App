@@ -85,8 +85,8 @@ const Weather = () => {
                         <br/>
                     
                     <div className="div-info2">
-                        <span className="info2"> Max: {Math.floor(weatherData.main.temp_max)}°</span>
-                        <span className="info3">Min: {Math.floor(weatherData.main.temp_min)}°</span>
+                        <span className="info2"> H: {Math.floor(weatherData.main.temp_max)}°</span>
+                        <span className="info3">L: {Math.floor(weatherData.main.temp_min)}°</span>
                     </div>
                     
 
