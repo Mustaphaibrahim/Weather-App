@@ -18,7 +18,7 @@ const Weather = () => {
     const apiSearch = () => { 
 
         const api = {
-            key: "c33606fb194e61c82ababcb0fcc82128",
+            key: "d67d5f07c9c6a394ebc818dbf51fa70c",
             base : "https://api.openweathermap.org/data/2.5/",
         }
         axios.get(`${api.base}weather?q=${location}&units=metric&APPID=${api.key}`).then((data)=>{
@@ -29,7 +29,7 @@ const Weather = () => {
     };
 
     const api = {
-        key: "c33606fb194e61c82ababcb0fcc82128",
+        key: "d67d5f07c9c6a394ebc818dbf51fa70c",
         base : "https://api.openweathermap.org/data/2.5/",
     };
 
